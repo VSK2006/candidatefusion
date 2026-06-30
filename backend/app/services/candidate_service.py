@@ -186,14 +186,15 @@ def persist_candidate(
             for sk in profile.skills:
                 key = sk.name.lower()
                 if key in existing_skills:
-                    # Boost confidence and add source
+                    # Boost confidence only when a genuinely NEW source confirms
+                    # this skill -- re-uploading the same source must be a no-op,
+                    # otherwise confidence inflates indefinitely on re-upload.
                     db_skill = existing_skills[key]
                     srcs = _split(db_skill.sources)
                     if source_type not in srcs:
                         srcs.append(source_type)
-                    db_skill.sources = _join(srcs)
-                    # Confidence boost for multi-source confirmation
-                    db_skill.confidence = min(1.0, db_skill.confidence + 0.05)
+                        db_skill.sources = _join(srcs)
+                        db_skill.confidence = min(1.0, db_skill.confidence + 0.05)
                 else:
                     new_skill = Skill(
                         name=sk.name,
