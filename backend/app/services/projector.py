@@ -11,6 +11,7 @@ Supported path syntax:
 import re
 from typing import Any
 from app.schemas import OutputConfig
+from app.services.normalizer import normalize_skill
 
 
 # ---------------------------------------------------------------------------
@@ -57,8 +58,8 @@ def _normalize(value: Any, mode: str | None) -> Any:
         return value  # already E.164 from the normalizer stage
     if mode == "CANONICAL":
         if isinstance(value, list):
-            return [v.strip().title() if isinstance(v, str) else v for v in value if v]
-        return value.strip().title() if isinstance(value, str) else value
+            return [normalize_skill(v) if isinstance(v, str) else v for v in value if v]
+        return normalize_skill(value) if isinstance(value, str) else value
     if mode == "LOWERCASE":
         if isinstance(value, list):
             return [v.lower() if isinstance(v, str) else v for v in value]

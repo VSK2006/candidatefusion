@@ -184,7 +184,7 @@ def test_project_skills_names():
         include_provenance=False,
     )
     result = project_profile(CANONICAL, config)
-    assert result['skill_names'] == ['Python', 'Sql']  # canonical = title case
+    assert result['skill_names'] == ['Python', 'SQL']  # canonical = proper skill casing, not naive title-case
 
 
 def test_project_on_missing_omit():
