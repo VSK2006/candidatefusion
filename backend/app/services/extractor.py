@@ -70,20 +70,31 @@ def extract_links(text: str) -> dict[str, Any]:
 # Name extraction
 # ---------------------------------------------------------------------------
 
+_NAME_TOKEN = r"[A-Z][a-zA-Z'\-]+(?:[ \t]+[A-Z][a-zA-Z'\-]+){1,3}"
+
+
 def extract_name(text: str) -> str | None:
     # Explicit label: "Name: John Smith"
     m = re.search(
         r'(?:Name|Full Name|Candidate Name|Applicant)\s*[:\-]\s*'
-        r'([A-Z][a-zA-Z\'\-]+(?:\s+[A-Z][a-zA-Z\'\-]+){1,3})',
+        rf'({_NAME_TOKEN})',
         text,
     )
     if m:
         return m.group(1).strip()
-    # First non-empty line that looks like a proper name (2-4 capitalised words)
-    for line in text.strip().splitlines():
+
+    for line in text.strip().splitlines()[:5]:
         line = line.strip()
-        if re.match(r'^[A-Z][a-zA-Z\'\-]+(?:\s+[A-Z][a-zA-Z\'\-]+){1,3}$', line):
+        if not line:
+            continue
+        # Whole line is just a name
+        if re.match(rf'^{_NAME_TOKEN}$', line):
             return line
+        # "<prefix> - Name" / "<prefix> -- Name" / "<prefix> : Name" — the name
+        # sits after the last separator (handles "Recruiter Notes — Jane Doe")
+        sep_m = re.search(r'[:\-‐-―]\s*([A-Z][a-zA-Z\'\-]+(?:\s+[A-Z][a-zA-Z\'\-]+){1,3})\s*$', line)
+        if sep_m:
+            return sep_m.group(1).strip()
     return None
 
 
@@ -122,28 +133,42 @@ _EXP_TITLE_WORDS = (
     r'VP|Intern|Consultant|Specialist|Scientist|Researcher|Officer|Head'
 )
 
+_EXP_LINE_RE = re.compile(
+    r'^(?P<title>[A-Z][a-zA-Z]+(?:[ \t]+[A-Z]?[a-zA-Z]+)*?[ \t]+(?:' + _EXP_TITLE_WORDS + r')(?:[ \t]+[A-Z][a-zA-Z]+)*)'
+    r'[ \t]+(?:at|@)[ \t]+'
+    r'(?P<company>[A-Z][a-zA-Z0-9 \t&,\.\-]+?)'
+    r'(?:,?[ \t]*(?P<start>[A-Za-z]{3,9}\.?[ \t]+\d{4})[ \t]*[-–—][ \t]*(?P<end>[A-Za-z]{3,9}\.?[ \t]+\d{4}|Present|Current))?'
+    r'[ \t]*$'
+)
+
+
 def extract_experience(text: str) -> list[dict]:
+    """Line-based, same rationale as extract_education: resume/notes entries
+    are normally one line each, and processing per-line guarantees a match
+    can't span across an unrelated heading or the previous bullet point
+    (e.g. a stray "CD" fragment from "CI/CD" bleeding into the next line)."""
     experiences: list[dict] = []
-    pattern = re.compile(
-        r'(?P<title>[A-Z][a-zA-Z\s]+(?:' + _EXP_TITLE_WORDS + r')[a-zA-Z\s]*?)'
-        r'\s+(?:at|@|,|–|-)\s+'
-        r'(?P<company>[A-Z][a-zA-Z0-9\s&,\.\-]+?)(?=\s*[,\n|·•]|\s{2,}|$)',
-        re.MULTILINE,
-    )
     seen: set[str] = set()
-    for m in pattern.finditer(text):
+    for line in text.splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        m = _EXP_LINE_RE.search(line)
+        if not m:
+            continue
         title = m.group("title").strip()
         company = m.group("company").strip().rstrip(",")
         key = f"{title.lower()}|{company.lower()}"
-        if key not in seen and len(company) < 80:
-            seen.add(key)
-            experiences.append({
-                "company": company,
-                "title": title,
-                "start": None,
-                "end": None,
-                "summary": None,
-            })
+        if key in seen or len(company) >= 80:
+            continue
+        seen.add(key)
+        experiences.append({
+            "company": company,
+            "title": title,
+            "start": m.group("start"),
+            "end": m.group("end"),
+            "summary": None,
+        })
     return experiences[:6]
 
 
@@ -151,31 +176,75 @@ def extract_experience(text: str) -> list[dict]:
 # Education extraction
 # ---------------------------------------------------------------------------
 
+_DEGREE_RE = re.compile(
+    r'(?<![A-Za-z])'  # degree token must not be a substring inside a longer word (e.g. "MS" in "BMS")
+    r'(?P<degree>B\.?Tech\.?|M\.?Tech\.?|B\.?E\.?|M\.?E\.?|B\.?S\.?|B\.?A\.?|M\.?S\.?|M\.?A\.?|MBA|Ph\.?D\.?|'
+    r'Bachelor|Master|Doctorate)(?![A-Za-z])'
+)
+_YEAR_RE = re.compile(r'(?:19|20)\d{2}')
+_FIELD_SEP_RE = re.compile(r'\b(?:from|at)\b', re.IGNORECASE)
+
+
 def extract_education(text: str) -> list[dict]:
+    """Line-based: each resume education entry is normally one line, so we
+    process line-by-line rather than a single do-everything regex — that
+    avoids lazy-quantifier truncation (e.g. "Wharton School" -> "Whar")
+    since there's no ambiguity about where the line (and institution) ends.
+    """
     education: list[dict] = []
-    pattern = re.compile(
-        r'(?P<degree>B\.?S\.?|B\.?A\.?|M\.?S\.?|M\.?A\.?|MBA|Ph\.?D\.?|'
-        r'Bachelor|Master|Doctorate)\s*'
-        r'(?:of|in|,)?\s*'
-        r'(?P<field>[A-Z][a-zA-Z\s&]{2,40}?)?\s*'
-        r'(?:from|at|,|-|–)?\s*'
-        r'(?P<institution>[A-Z][a-zA-Z\s&,\.]{3,60}?)'
-        r'(?:\s*,?\s*(?P<year>(?:19|20)\d{2}))?',
-        re.MULTILINE,
-    )
     seen: set[str] = set()
-    for m in pattern.finditer(text):
-        institution = (m.group("institution") or "").strip().rstrip(",").rstrip()
+
+    for line in text.splitlines():
+        m = _DEGREE_RE.search(line)
+        if not m:
+            continue
+        degree = m.group("degree")
+        rest = line[m.end():].strip()
+        had_field_connector = bool(re.match(r'^(?:of|in)\b', rest, flags=re.IGNORECASE))
+        rest = re.sub(r'^(?:of|in)\b', '', rest, flags=re.IGNORECASE).lstrip(', ').strip()
+
+        year_match = _YEAR_RE.search(rest)
+        end_year = int(year_match.group()) if year_match else None
+        if year_match:
+            rest = rest[:year_match.start()] + rest[year_match.end():]
+        rest = rest.strip(' ,.-–')
+
+        field = None
+        institution = rest
+        sep_match = _FIELD_SEP_RE.search(rest)
+        if sep_match:
+            # "<field> from/at <institution>"
+            field = rest[:sep_match.start()].strip(' ,') or None
+            institution = rest[sep_match.end():].strip(' ,')
+        elif had_field_connector and ',' in rest:
+            # "<degree> of/in <field>, <institution>"
+            head, _, tail = rest.partition(',')
+            head, tail = head.strip(), tail.strip()
+            if head and tail:
+                field, institution = head, tail
+        elif ',' in rest:
+            # No field connector -> what follows the degree is the institution
+            # itself (e.g. "B.Tech, BMS College of Engineering, Bangalore");
+            # only take the first comma segment, dropping trailing city/etc.
+            head, _, _tail = rest.partition(',')
+            head = head.strip()
+            if head:
+                institution = head
+
+        institution = institution.strip(' ,.')
+        if not institution or len(institution) > 80:
+            continue
         key = institution.lower()
-        if key and key not in seen and len(institution) < 80:
-            seen.add(key)
-            year_str = m.group("year")
-            education.append({
-                "institution": institution,
-                "degree": m.group("degree"),
-                "field": (m.group("field") or "").strip() or None,
-                "end_year": int(year_str) if year_str else None,
-            })
+        if key in seen:
+            continue
+        seen.add(key)
+        education.append({
+            "institution": institution,
+            "degree": degree,
+            "field": field,
+            "end_year": end_year,
+        })
+
     return education[:4]
 
 

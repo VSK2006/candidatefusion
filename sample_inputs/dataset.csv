@@ -1,0 +1,6 @@
+name,email,phone,skills,headline,current_company,location
+Olivia Chen,olivia.chen@example.com,+1 206-555-0142,"Python, AWS, Kubernetes, Terraform",Platform Engineer,CloudNova,"Seattle, WA"
+Marcus Webb,marcus.webb@example.com,+1 617-555-0199,"Java, Spring, Microservices",Backend Engineer,FinEdge,"Boston, MA"
+Grace Kim,grace.kim@example.com,,"React, TypeScript, GraphQL",Frontend Engineer,PixelWorks,"Austin, TX"
+Tyler Brooks,tyler.brooks@example.com,+1 720-555-0166,"SQL, Tableau, Power BI",BI Analyst,DataNorth,
+Zara Ahmed,zara.ahmed@example.com,,"Figma, UX Research",,,
