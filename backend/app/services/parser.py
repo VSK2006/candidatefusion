@@ -47,25 +47,31 @@ async def _extract_text(file: UploadFile) -> str:
     content = await file.read()
     filename = (file.filename or "").lower()
 
-    # PDF
+    # PDF — binary format; never fall back to raw-byte decoding on failure
     if filename.endswith(".pdf"):
         try:
             import pdfplumber
+        except ImportError:
+            raise HTTPException(status_code=500, detail="PDF parsing is unavailable: pdfplumber is not installed.")
+        try:
             with pdfplumber.open(io.BytesIO(content)) as pdf:
                 return "\n".join(page.extract_text() or "" for page in pdf.pages)
-        except Exception:
-            pass  # fall through to plain-text decode
+        except Exception as exc:
+            raise HTTPException(status_code=422, detail=f"Could not read this PDF: {exc}")
 
-    # DOCX
+    # DOCX — binary format; never fall back to raw-byte decoding on failure
     if filename.endswith(".docx"):
         try:
             import docx as python_docx
+        except ImportError:
+            raise HTTPException(status_code=500, detail="DOCX parsing is unavailable: python-docx is not installed.")
+        try:
             doc = python_docx.Document(io.BytesIO(content))
             return "\n".join(p.text for p in doc.paragraphs)
-        except Exception:
-            pass
+        except Exception as exc:
+            raise HTTPException(status_code=422, detail=f"Could not read this DOCX: {exc}")
 
-    # Plain text (or fallback)
+    # Plain text (.txt notes, or any other text-based source)
     return content.decode("utf-8", errors="replace")
 
 
