@@ -57,11 +57,11 @@ Open `http://localhost:4173` in your browser.
 python -m pytest tests/ -v
 ```
 
-Run from the **project root** (the test file adjusts `sys.path` to import the backend package). 19 of 19 tests pass.
+Run from the **project root** (the test file adjusts `sys.path` to import the backend package). 19 of 19 tests pass — covering pipeline integration (CSV/ATS/notes ingestion end-to-end), the extractor (emails, phones, skills, name extraction from free text), the normalizer (E.164 phone formatting, location parsing, years-of-experience calculation), and the projector (default output, field selection/renaming, all three `on_missing` behaviors).
 
 ---
 
-## Generating Sample Outputs
+## Sample Input → Output Walkthrough
 
 From the **project root** (not `backend/`):
 
@@ -69,7 +69,37 @@ From the **project root** (not `backend/`):
 python generate_sample_outputs.py
 ```
 
-This resets the DB, ingests all three sample input files, and writes three JSON files to `sample_outputs/`.
+This resets the DB, ingests the three files in `sample_inputs/` (`sample.csv`, `sample_ats.json`, `notes.txt`), and writes the merged result to `sample_outputs/`. Concretely, here's what happens to **Aisha Patel**, who appears in both `sample.csv` and `sample_ats.json`:
+
+**Input — `sample_inputs/sample.csv` (row 1):**
+```
+Aisha Patel,aisha.patel@example.com,+1 415-555-0199,"Python, Data Analysis, SQL, TensorFlow",Senior Data Analyst,DataCorp,"San Francisco, CA"
+```
+
+**Input — `sample_inputs/sample_ats.json`:**
+```json
+{ "name": "Aisha Patel", "email": "aisha.patel@example.com", "skills": ["Python", "SQL", "TensorFlow", ...], "experience": [...], "education": [...] }
+```
+
+**Output — merged record in `sample_outputs/default_output.json`:**
+```json
+{
+  "full_name": "Aisha Patel",
+  "emails": ["aisha.patel@example.com"],
+  "phones": ["+14155550199"],
+  "location": { "city": "San Francisco", "region": "CA", "country": "US" },
+  "headline": "Senior Data Analyst & ML Engineer",
+  "years_experience": 6.9,
+  "skills": [
+    { "name": "Python", "confidence": 0.85, "sources": ["csv", "ats"] },
+    { "name": "Data Analysis", "confidence": 0.8, "sources": ["csv"] },
+    { "name": "SQL", "confidence": 0.85, "sources": ["csv", "ats"] }
+  ],
+  "fusion_score": 0.846
+}
+```
+
+Note the two records were matched by exact email, the phone was normalized to E.164, the raw `"San Francisco, CA"` string was split into structured `city`/`region`/`country`, and skills present in **both** sources (Python, SQL, TensorFlow) got a confidence boost (0.80 → 0.85) plus a `sources: ["csv", "ats"]` tag — that cross-source confirmation is also what pushes her Fusion Score up to 0.846.
 
 ---
 

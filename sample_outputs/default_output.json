@@ -2,7 +2,7 @@
   "count": 5,
   "candidates": [
     {
-      "candidate_id": "d6b74a32-ddc1-4b28-aec4-41163c1a3d75",
+      "candidate_id": "03085cb1-0196-45a9-8f26-6de335fd945a",
       "full_name": "Aisha Patel",
       "emails": [
         "aisha.patel@example.com"
@@ -143,7 +143,7 @@
       "fusion_score": 0.846
     },
     {
-      "candidate_id": "54f2f183-d043-4b97-a5ea-df89e5deb6cc",
+      "candidate_id": "7279cffc-15d8-4842-92e2-387575b8eefe",
       "full_name": "Marcus Lee",
       "emails": [
         "marcus.lee@example.com"
@@ -292,7 +292,7 @@
       "fusion_score": 0.745
     },
     {
-      "candidate_id": "38713073-ba08-4ee7-815c-d914deda6ed4",
+      "candidate_id": "a62360d4-bd81-4ecf-a6a1-d649324bfb30",
       "full_name": "Nina Roberts",
       "emails": [
         "nina.roberts@example.com"
@@ -362,7 +362,7 @@
       "fusion_score": 0.67
     },
     {
-      "candidate_id": "7591087e-592a-44aa-9ae9-a6615b63c402",
+      "candidate_id": "e4d1bb61-318d-4f4d-8e73-d0bc6e7d88f7",
       "full_name": "Diego Rivera",
       "emails": [
         "diego.rivera@example.com"
@@ -439,7 +439,7 @@
       "fusion_score": 0.67
     },
     {
-      "candidate_id": "c9679ba3-99c6-40b6-bbf2-2975d889d073",
+      "candidate_id": "b2281ca5-5647-4d1e-9419-82bd35acb876",
       "full_name": "Priya Singh",
       "emails": [
         "priya.singh@example.com"
