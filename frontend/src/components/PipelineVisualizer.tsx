@@ -21,11 +21,7 @@ export default function PipelineVisualizer() {
         <div className="space-y-0">
           {STAGES.map((stage, i) => (
             <div key={stage.name} className="flex items-start gap-3 py-2 relative">
-              <div className={`relative z-10 w-7 h-7 rounded-lg flex items-center justify-center text-[10px] font-bold shrink-0 transition-colors ${
-                i < 4
-                  ? 'bg-indigo-500/15 border border-indigo-500/30 text-indigo-400'
-                  : 'bg-zinc-800 border border-zinc-700 text-zinc-500'
-              }`}>
+              <div className="relative z-10 w-7 h-7 rounded-lg flex items-center justify-center text-[10px] font-bold shrink-0 bg-indigo-500/15 border border-indigo-500/30 text-indigo-400">
                 {i + 1}
               </div>
               <div className="pt-0.5">
