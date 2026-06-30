@@ -116,6 +116,16 @@ _COUNTRY_MAP: dict[str, str] = {
     "new zealand": "NZ", "ireland": "IE", "spain": "ES", "italy": "IT",
     "portugal": "PT", "switzerland": "CH", "austria": "AT", "belgium": "BE",
     "poland": "PL", "russia": "RU", "ukraine": "UA",
+    "south korea": "KR", "korea": "KR", "north korea": "KP",
+    "uae": "AE", "united arab emirates": "AE", "u.a.e.": "AE",
+    "south africa": "ZA", "mexico": "MX", "argentina": "AR",
+    "indonesia": "ID", "vietnam": "VN", "philippines": "PH",
+    "thailand": "TH", "malaysia": "MY", "pakistan": "PK",
+    "bangladesh": "BD", "israel": "IL", "saudi arabia": "SA",
+    "egypt": "EG", "nigeria": "NG", "kenya": "KE", "turkey": "TR",
+    "greece": "GR", "finland": "FI", "czech republic": "CZ",
+    "hungary": "HU", "romania": "RO", "taiwan": "TW",
+    "hong kong": "HK", "south sudan": "SS",
 }
 
 _US_STATES: set[str] = {

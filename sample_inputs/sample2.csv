@@ -1,0 +1,6 @@
+name,email,phone,skills,headline,current_company,location
+Ethan Walker,ethan.walker@example.com,+1 312-555-0177,"Go, Kubernetes, Docker, AWS, Terraform",DevOps Engineer,CloudWorks,"Chicago, IL"
+Sara Kim,sara.kim@example.com,+82 10-2345-6789,"Rust, C++, Systems Design, gRPC",Backend Engineer,CoreSystems,"Seoul, South Korea"
+Fatima Al-Sayed,fatima.alsayed@example.com,+971 50-123-4567,"Python, Pandas, Data Science, SQL, Tableau",Data Scientist,Insight Analytics,"Dubai, UAE"
+Liam O'Brien,liam.obrien@example.com,+353 87-123-4567,"Swift, Kotlin, Mobile Development, Firebase",Mobile Engineer,AppForge,"Dublin, Ireland"
+Chloe Martin,chloe.martin@example.com,+33 6-12-34-56-78,"Product Strategy, Agile, Roadmapping, SQL",Product Manager,LaunchPad,"Paris, France"
