@@ -47,18 +47,17 @@ npm install
 npm run dev
 ```
 
-Open `http://localhost:5173` in your browser.
+Open `http://localhost:4173` in your browser.
 
 ---
 
 ## Running Tests
 
 ```bash
-cd backend
 python -m pytest tests/ -v
 ```
 
-18 of 18 tests pass. The one GitHub test is skipped unless a live network is present.
+Run from the **project root** (the test file adjusts `sys.path` to import the backend package). 19 of 19 tests pass.
 
 ---
 
@@ -119,7 +118,7 @@ frontend/
       PipelineVisualizer.tsx  7-step pipeline diagram
 
 tests/
-  test_pipeline.py        18 integration + unit tests
+  test_pipeline.py        19 integration + unit tests
 ```
 
 ---
@@ -187,8 +186,7 @@ Omit the `fields` array to receive the full canonical output.
 |---|---|---|
 | `GET` | `/api/health` | Health check |
 | `GET` | `/api/stats` | `{total_candidates, total_uploads, source_count}` |
-| `POST` | `/api/upload` | Upload a file (`source_type` form field) |
-| `POST` | `/api/upload-url` | Ingest a GitHub URL (`url` + `source_type` body) |
+| `POST` | `/api/upload` | Upload a file or GitHub URL (`source_type` + `file` or `reference_url` form fields) |
 | `GET` | `/api/candidates` | List all candidates (full canonical schema) |
 | `GET` | `/api/candidate/{id}` | Get one candidate by UUID |
 | `POST` | `/api/candidate/{id}/export` | Export with custom `OutputConfig` |
