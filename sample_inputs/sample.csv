@@ -1,0 +1,6 @@
+name,email,phone,skills,headline,current_company,location
+Aisha Patel,aisha.patel@example.com,+1 415-555-0199,"Python, Data Analysis, SQL, TensorFlow",Senior Data Analyst,DataCorp,"San Francisco, CA"
+Marcus Lee,marcus.lee@example.com,+1 212-555-0143,"Java, Spring Boot, Microservices, Docker",Software Engineer,FinTech Inc,"New York, NY"
+Nina Roberts,nina.roberts@example.com,+44 7700 900123,"UX Design, Figma, Research",Product Designer,Design Studio,"London, UK"
+Diego Rivera,diego.rivera@example.com,+55 11 91234-5678,"JavaScript, React, Node.js, TypeScript",Frontend Developer,WebCo,"São Paulo, Brazil"
+Priya Singh,priya.singh@example.com,+91 98765 43210,"Machine Learning, Python, PyTorch, scikit-learn",ML Engineer,AI Labs,"Bangalore, India"

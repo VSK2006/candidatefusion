@@ -1,0 +1,40 @@
+{
+  "name": "Aisha Patel",
+  "email": "aisha.patel@example.com",
+  "phone": "+14155550199",
+  "headline": "Senior Data Analyst & ML Engineer",
+  "location": "San Francisco, CA",
+  "linkedin": "https://linkedin.com/in/aishapatel",
+  "github": "https://github.com/aishapatel",
+  "skills": ["Python", "SQL", "TensorFlow", "Data Visualization", "Apache Spark", "Tableau"],
+  "experience": [
+    {
+      "company": "DataCorp",
+      "title": "Senior Data Analyst",
+      "start": "2021-03",
+      "end": null,
+      "summary": "Lead analytics team of 5 engineers, built real-time dashboards serving 200k users."
+    },
+    {
+      "company": "InsightAI",
+      "title": "Data Analyst",
+      "start": "2019-06",
+      "end": "2021-02",
+      "summary": "Developed ETL pipelines and predictive models for e-commerce recommendations."
+    }
+  ],
+  "education": [
+    {
+      "institution": "UC Berkeley",
+      "degree": "M.S.",
+      "field": "Data Science",
+      "end_year": 2019
+    },
+    {
+      "institution": "University of Mumbai",
+      "degree": "B.S.",
+      "field": "Computer Science",
+      "end_year": 2017
+    }
+  ]
+}

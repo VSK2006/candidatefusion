@@ -1,0 +1,22 @@
+Recruiter Notes — Marcus Lee
+Date: 2024-01-15
+
+Spoke with Marcus today. Very strong Java background, 5+ years in fintech.
+Currently at FinTech Inc as Software Engineer.
+Contact: marcus.lee@example.com | +1 (212) 555-0143
+
+He mentioned experience with:
+- Java, Spring Boot, Microservices, Docker, Kubernetes, PostgreSQL, Redis
+- Also comfortable with Python scripting
+
+Previous roles:
+Software Engineer at PayScale Solutions, Jan 2019 - Mar 2022
+Junior Developer at CodeFactory, Jun 2017 - Dec 2018
+
+Education: B.S. Computer Science from NYU, 2017
+
+LinkedIn: https://linkedin.com/in/marcuslee
+GitHub: https://github.com/marcuslee
+
+Notes: Strong candidate for backend lead role. Ask about team leadership experience.
+Expected salary: $170k-$190k. Available in 4 weeks.

@@ -1,0 +1,1 @@
+# CandidateFusion validator package

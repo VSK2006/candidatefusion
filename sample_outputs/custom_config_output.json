@@ -1,0 +1,159 @@
+{
+  "config": {
+    "fields": [
+      {
+        "path": "full_name",
+        "from_": null,
+        "type": "string",
+        "required": true,
+        "normalize": null
+      },
+      {
+        "path": "primary_email",
+        "from_": "emails[0]",
+        "type": "string",
+        "required": true,
+        "normalize": null
+      },
+      {
+        "path": "phone",
+        "from_": "phones[0]",
+        "type": "string",
+        "required": false,
+        "normalize": "E164"
+      },
+      {
+        "path": "location_city",
+        "from_": "location.city",
+        "type": "string",
+        "required": false,
+        "normalize": null
+      },
+      {
+        "path": "location_country",
+        "from_": "location.country",
+        "type": "string",
+        "required": false,
+        "normalize": null
+      },
+      {
+        "path": "skills",
+        "from_": "skills[].name",
+        "type": "string[]",
+        "required": false,
+        "normalize": "canonical"
+      },
+      {
+        "path": "headline",
+        "from_": null,
+        "type": "string",
+        "required": false,
+        "normalize": null
+      },
+      {
+        "path": "years_experience",
+        "from_": null,
+        "type": "number",
+        "required": false,
+        "normalize": null
+      }
+    ],
+    "include_confidence": true,
+    "include_provenance": false,
+    "on_missing": "null"
+  },
+  "count": 5,
+  "candidates": [
+    {
+      "full_name": "Aisha Patel",
+      "primary_email": "aisha.patel@example.com",
+      "phone": "+14155550199",
+      "location_city": "San Francisco",
+      "location_country": "US",
+      "skills": [
+        "Python",
+        "Data Analysis",
+        "Sql",
+        "Tensorflow",
+        "Data Visualization",
+        "Apache Spark",
+        "Tableau"
+      ],
+      "headline": "Senior Data Analyst & ML Engineer",
+      "years_experience": 6.9,
+      "overall_confidence": 0.9,
+      "fusion_score": 0.846
+    },
+    {
+      "full_name": "Marcus Lee",
+      "primary_email": "marcus.lee@example.com",
+      "phone": "+12125550143",
+      "location_city": "New York",
+      "location_country": "US",
+      "skills": [
+        "Java",
+        "Spring Boot",
+        "Microservices",
+        "Docker",
+        "Kubernetes",
+        "Postgresql",
+        "Python",
+        "Redis"
+      ],
+      "headline": "Software Engineer",
+      "years_experience": null,
+      "overall_confidence": 0.8,
+      "fusion_score": 0.745
+    },
+    {
+      "full_name": "Nina Roberts",
+      "primary_email": "nina.roberts@example.com",
+      "phone": "+44 7700 900123",
+      "location_city": "London",
+      "location_country": "GB",
+      "skills": [
+        "Ux Design",
+        "Figma",
+        "Research"
+      ],
+      "headline": "Product Designer",
+      "years_experience": null,
+      "overall_confidence": 0.8,
+      "fusion_score": 0.67
+    },
+    {
+      "full_name": "Diego Rivera",
+      "primary_email": "diego.rivera@example.com",
+      "phone": "+5511912345678",
+      "location_city": "S\u00e3o Paulo",
+      "location_country": "BR",
+      "skills": [
+        "Javascript",
+        "React",
+        "Node.Js",
+        "Typescript"
+      ],
+      "headline": "Frontend Developer",
+      "years_experience": null,
+      "overall_confidence": 0.8,
+      "fusion_score": 0.67
+    },
+    {
+      "full_name": "Priya Singh",
+      "primary_email": "priya.singh@example.com",
+      "phone": "+919876543210",
+      "location_city": "Bangalore",
+      "location_country": "IN",
+      "skills": [
+        "Machine Learning",
+        "Python",
+        "Pytorch",
+        "Scikit-Learn"
+      ],
+      "headline": "ML Engineer",
+      "years_experience": null,
+      "overall_confidence": 0.8,
+      "fusion_score": 0.67
+    }
+  ]
+}

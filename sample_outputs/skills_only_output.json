@@ -1,0 +1,61 @@
+{
+  "count": 5,
+  "candidates": [
+    {
+      "full_name": "Aisha Patel",
+      "skills": [
+        "Python",
+        "Data Analysis",
+        "SQL",
+        "TensorFlow",
+        "Data Visualization",
+        "Apache Spark",
+        "Tableau"
+      ],
+      "headline": "Senior Data Analyst & ML Engineer"
+    },
+    {
+      "full_name": "Marcus Lee",
+      "skills": [
+        "Java",
+        "Spring Boot",
+        "Microservices",
+        "Docker",
+        "Kubernetes",
+        "PostgreSQL",
+        "Python",
+        "Redis"
+      ],
+      "headline": "Software Engineer"
+    },
+    {
+      "full_name": "Nina Roberts",
+      "skills": [
+        "UX Design",
+        "Figma",
+        "Research"
+      ],
+      "headline": "Product Designer"
+    },
+    {
+      "full_name": "Diego Rivera",
+      "skills": [
+        "JavaScript",
+        "React",
+        "Node.js",
+        "TypeScript"
+      ],
+      "headline": "Frontend Developer"
+    },
+    {
+      "full_name": "Priya Singh",
+      "skills": [
+        "Machine Learning",
+        "Python",
+        "PyTorch",
+        "scikit-learn"
+      ],
+      "headline": "ML Engineer"
+    }
+  ]
+}

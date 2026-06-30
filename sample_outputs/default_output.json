@@ -1,0 +1,519 @@
+{
+  "count": 5,
+  "candidates": [
+    {
+      "candidate_id": "d6b74a32-ddc1-4b28-aec4-41163c1a3d75",
+      "full_name": "Aisha Patel",
+      "emails": [
+        "aisha.patel@example.com"
+      ],
+      "phones": [
+        "+14155550199"
+      ],
+      "location": {
+        "city": "San Francisco",
+        "region": "CA",
+        "country": "US"
+      },
+      "links": {
+        "github": "https://github.com/aishapatel",
+        "linkedin": "https://linkedin.com/in/aishapatel",
+        "portfolio": null,
+        "other": []
+      },
+      "headline": "Senior Data Analyst & ML Engineer",
+      "years_experience": 6.9,
+      "skills": [
+        {
+          "name": "Python",
+          "confidence": 0.8500000000000001,
+          "sources": [
+            "csv",
+            "ats"
+          ]
+        },
+        {
+          "name": "Data Analysis",
+          "confidence": 0.8,
+          "sources": [
+            "csv"
+          ]
+        },
+        {
+          "name": "SQL",
+          "confidence": 0.8500000000000001,
+          "sources": [
+            "csv",
+            "ats"
+          ]
+        },
+        {
+          "name": "TensorFlow",
+          "confidence": 0.8500000000000001,
+          "sources": [
+            "csv",
+            "ats"
+          ]
+        },
+        {
+          "name": "Data Visualization",
+          "confidence": 0.9,
+          "sources": [
+            "ats"
+          ]
+        },
+        {
+          "name": "Apache Spark",
+          "confidence": 0.9,
+          "sources": [
+            "ats"
+          ]
+        },
+        {
+          "name": "Tableau",
+          "confidence": 0.9,
+          "sources": [
+            "ats"
+          ]
+        }
+      ],
+      "experience": [
+        {
+          "company": "DataCorp",
+          "title": "Senior Data Analyst",
+          "start": null,
+          "end": null,
+          "summary": null
+        },
+        {
+          "company": "InsightAI",
+          "title": "Data Analyst",
+          "start": "2019-06",
+          "end": "2021-02",
+          "summary": "Developed ETL pipelines and predictive models for e-commerce recommendations."
+        }
+      ],
+      "education": [
+        {
+          "institution": "UC Berkeley",
+          "degree": "M.S.",
+          "field": "Data Science",
+          "end_year": 2019
+        },
+        {
+          "institution": "University of Mumbai",
+          "degree": "B.S.",
+          "field": "Computer Science",
+          "end_year": 2017
+        }
+      ],
+      "provenance": [
+        {
+          "field": "full_name",
+          "source": "csv",
+          "method": "direct_mapping"
+        },
+        {
+          "field": "emails",
+          "source": "csv",
+          "method": "direct_mapping"
+        },
+        {
+          "field": "created_profile",
+          "source": "csv",
+          "method": "canonical_mapper"
+        },
+        {
+          "field": "full_name",
+          "source": "ats",
+          "method": "ats_field_mapping"
+        },
+        {
+          "field": "skills",
+          "source": "ats",
+          "method": "ats_field_mapping"
+        },
+        {
+          "field": "merged_profile",
+          "source": "ats",
+          "method": "merge_engine"
+        }
+      ],
+      "overall_confidence": 0.9,
+      "fusion_score": 0.846
+    },
+    {
+      "candidate_id": "54f2f183-d043-4b97-a5ea-df89e5deb6cc",
+      "full_name": "Marcus Lee",
+      "emails": [
+        "marcus.lee@example.com"
+      ],
+      "phones": [
+        "+12125550143"
+      ],
+      "location": {
+        "city": "New York",
+        "region": "NY",
+        "country": "US"
+      },
+      "links": {
+        "github": "https://github.com/marcuslee",
+        "linkedin": "https://linkedin.com/in/marcuslee",
+        "portfolio": null,
+        "other": []
+      },
+      "headline": "Software Engineer",
+      "years_experience": null,
+      "skills": [
+        {
+          "name": "Java",
+          "confidence": 0.8500000000000001,
+          "sources": [
+            "csv",
+            "notes"
+          ]
+        },
+        {
+          "name": "Spring Boot",
+          "confidence": 0.8500000000000001,
+          "sources": [
+            "csv",
+            "notes"
+          ]
+        },
+        {
+          "name": "Microservices",
+          "confidence": 0.8,
+          "sources": [
+            "csv"
+          ]
+        },
+        {
+          "name": "Docker",
+          "confidence": 0.8500000000000001,
+          "sources": [
+            "csv",
+            "notes"
+          ]
+        },
+        {
+          "name": "Kubernetes",
+          "confidence": 0.55,
+          "sources": [
+            "notes"
+          ]
+        },
+        {
+          "name": "PostgreSQL",
+          "confidence": 0.55,
+          "sources": [
+            "notes"
+          ]
+        },
+        {
+          "name": "Python",
+          "confidence": 0.55,
+          "sources": [
+            "notes"
+          ]
+        },
+        {
+          "name": "Redis",
+          "confidence": 0.55,
+          "sources": [
+            "notes"
+          ]
+        }
+      ],
+      "experience": [
+        {
+          "company": "FinTech Inc",
+          "title": "Software Engineer",
+          "start": null,
+          "end": null,
+          "summary": null
+        },
+        {
+          "company": "PayScale Solutions",
+          "title": "Software Engineer",
+          "start": null,
+          "end": null,
+          "summary": null
+        },
+        {
+          "company": "CodeFactory",
+          "title": "Junior Developer",
+          "start": null,
+          "end": null,
+          "summary": null
+        }
+      ],
+      "education": [
+        {
+          "institution": "Scie",
+          "degree": "B.S.",
+          "field": "Computer",
+          "end_year": null
+        }
+      ],
+      "provenance": [
+        {
+          "field": "full_name",
+          "source": "csv",
+          "method": "direct_mapping"
+        },
+        {
+          "field": "emails",
+          "source": "csv",
+          "method": "direct_mapping"
+        },
+        {
+          "field": "created_profile",
+          "source": "csv",
+          "method": "canonical_mapper"
+        },
+        {
+          "field": "skills",
+          "source": "notes",
+          "method": "regex_extraction"
+        },
+        {
+          "field": "experience",
+          "source": "notes",
+          "method": "regex_extraction"
+        },
+        {
+          "field": "merged_profile",
+          "source": "notes",
+          "method": "merge_engine"
+        }
+      ],
+      "overall_confidence": 0.8,
+      "fusion_score": 0.745
+    },
+    {
+      "candidate_id": "38713073-ba08-4ee7-815c-d914deda6ed4",
+      "full_name": "Nina Roberts",
+      "emails": [
+        "nina.roberts@example.com"
+      ],
+      "phones": [
+        "+44 7700 900123"
+      ],
+      "location": {
+        "city": "London",
+        "region": null,
+        "country": "GB"
+      },
+      "links": null,
+      "headline": "Product Designer",
+      "years_experience": null,
+      "skills": [
+        {
+          "name": "UX Design",
+          "confidence": 0.8,
+          "sources": [
+            "csv"
+          ]
+        },
+        {
+          "name": "Figma",
+          "confidence": 0.8,
+          "sources": [
+            "csv"
+          ]
+        },
+        {
+          "name": "Research",
+          "confidence": 0.8,
+          "sources": [
+            "csv"
+          ]
+        }
+      ],
+      "experience": [
+        {
+          "company": "Design Studio",
+          "title": "Product Designer",
+          "start": null,
+          "end": null,
+          "summary": null
+        }
+      ],
+      "education": [],
+      "provenance": [
+        {
+          "field": "full_name",
+          "source": "csv",
+          "method": "direct_mapping"
+        },
+        {
+          "field": "emails",
+          "source": "csv",
+          "method": "direct_mapping"
+        },
+        {
+          "field": "created_profile",
+          "source": "csv",
+          "method": "canonical_mapper"
+        }
+      ],
+      "overall_confidence": 0.8,
+      "fusion_score": 0.67
+    },
+    {
+      "candidate_id": "7591087e-592a-44aa-9ae9-a6615b63c402",
+      "full_name": "Diego Rivera",
+      "emails": [
+        "diego.rivera@example.com"
+      ],
+      "phones": [
+        "+5511912345678"
+      ],
+      "location": {
+        "city": "S\u00e3o Paulo",
+        "region": null,
+        "country": "BR"
+      },
+      "links": null,
+      "headline": "Frontend Developer",
+      "years_experience": null,
+      "skills": [
+        {
+          "name": "JavaScript",
+          "confidence": 0.8,
+          "sources": [
+            "csv"
+          ]
+        },
+        {
+          "name": "React",
+          "confidence": 0.8,
+          "sources": [
+            "csv"
+          ]
+        },
+        {
+          "name": "Node.js",
+          "confidence": 0.8,
+          "sources": [
+            "csv"
+          ]
+        },
+        {
+          "name": "TypeScript",
+          "confidence": 0.8,
+          "sources": [
+            "csv"
+          ]
+        }
+      ],
+      "experience": [
+        {
+          "company": "WebCo",
+          "title": "Frontend Developer",
+          "start": null,
+          "end": null,
+          "summary": null
+        }
+      ],
+      "education": [],
+      "provenance": [
+        {
+          "field": "full_name",
+          "source": "csv",
+          "method": "direct_mapping"
+        },
+        {
+          "field": "emails",
+          "source": "csv",
+          "method": "direct_mapping"
+        },
+        {
+          "field": "created_profile",
+          "source": "csv",
+          "method": "canonical_mapper"
+        }
+      ],
+      "overall_confidence": 0.8,
+      "fusion_score": 0.67
+    },
+    {
+      "candidate_id": "c9679ba3-99c6-40b6-bbf2-2975d889d073",
+      "full_name": "Priya Singh",
+      "emails": [
+        "priya.singh@example.com"
+      ],
+      "phones": [
+        "+919876543210"
+      ],
+      "location": {
+        "city": "Bangalore",
+        "region": null,
+        "country": "IN"
+      },
+      "links": null,
+      "headline": "ML Engineer",
+      "years_experience": null,
+      "skills": [
+        {
+          "name": "Machine Learning",
+          "confidence": 0.8,
+          "sources": [
+            "csv"
+          ]
+        },
+        {
+          "name": "Python",
+          "confidence": 0.8,
+          "sources": [
+            "csv"
+          ]
+        },
+        {
+          "name": "PyTorch",
+          "confidence": 0.8,
+          "sources": [
+            "csv"
+          ]
+        },
+        {
+          "name": "scikit-learn",
+          "confidence": 0.8,
+          "sources": [
+            "csv"
+          ]
+        }
+      ],
+      "experience": [
+        {
+          "company": "AI Labs",
+          "title": "ML Engineer",
+          "start": null,
+          "end": null,
+          "summary": null
+        }
+      ],
+      "education": [],
+      "provenance": [
+        {
+          "field": "full_name",
+          "source": "csv",
+          "method": "direct_mapping"
+        },
+        {
+          "field": "emails",
+          "source": "csv",
+          "method": "direct_mapping"
+        },
+        {
+          "field": "created_profile",
+          "source": "csv",
+          "method": "canonical_mapper"
+        }
+      ],
+      "overall_confidence": 0.8,
+      "fusion_score": 0.67
+    }
+  ]
+}
